@@ -7,10 +7,21 @@ pipeline{
                 branch:'sprint_develop'
                 }
                              }
-        stage('Build'){
+        stage('Install dependencies'){
             steps{
             sh 'npm install'
-            sh 'npm run compile'
+            
+                 }
+                       }
+       stage('Build'){
+            steps{
+            sh 'npm run build'
+                 }
+                       }
+       stage('Test results'){
+            steps{
+            sh 'npm Test'
+            junit '*/test-results.xml'
                  }
                        }
     }
