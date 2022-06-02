@@ -11,16 +11,19 @@ pipeline{
             steps{
             sh 'npm install'
             
+            
                  }
                        }
        stage('Build'){
-            steps{
-            sh 'npm run build'
+            steps{            
+            withSonarQubeEnv('SONAR_LATEST') {
+                    sh script: "npm run build sonar:sonar"
+                }
                  }
                        }
        stage('Test results'){
             steps{
-            sh 'npm test'
+            sh 'npm run test'
                   }
                        }
     }
