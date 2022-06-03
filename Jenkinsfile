@@ -16,8 +16,7 @@ pipeline{
                        }
        stage('Build'){
             steps{            
-            withSonarQubeEnv('SONAR_LATEST') {
-                    sh script: "npm run build sonar:sonar"
+                sh  "npm run build"
                 }
                  }
                        }
@@ -26,5 +25,10 @@ pipeline{
             sh 'npm run test'
                   }
                        }
+       stage('Sonar Analysis') {
+            steps {
+                sh 'npm run sonar'
+            }
+        }
     }
 }
