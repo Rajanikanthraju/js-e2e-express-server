@@ -2,33 +2,30 @@ pipeline{
     agent{label 'nodejs'}
     stages{
         stage('source code'){
-            steps{
+                       steps{
             git url:'https://github.com/Rajanikanthraju/js-e2e-express-server.git',
                 branch:'sprint_develop'
-                }
+                            }
                              }
         stage('Install dependencies'){
-            steps{
-            sh 'npm install'
-            
-            
-                 }
-                       }
+                          steps{
+                             sh 'npm install'      
+                               }
+                                   }
        stage('Build'){
             steps{            
                 sh  "npm run build"
                 }
                  }
-                       }
        stage('Test results'){
-            steps{
-            sh 'npm run test'
-                  }
-                       }
+                      steps{
+                          sh 'npm run test'
+                           }
+                           }
        stage('Sonar Analysis') {
-            steps {
-                sh 'npm run sonar'
-            }
-        }
+                      steps {
+                           sh 'npm run sonar'
+                           }
+                               }
     }
 }
